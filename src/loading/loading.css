@@ -1,0 +1,11 @@
+.loading-label {
+    padding: 10px 10px 10px 40px;
+
+    color: rgb(210, 210, 210);
+
+    background: rgb(50, 49, 50) url("../../img/loading/loading.gif") no-repeat 5px;
+    background-size: 26px 26px;
+
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+}
