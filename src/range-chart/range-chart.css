@@ -1,0 +1,45 @@
+.range-chart * {
+    margin: 0;
+    padding: 0;
+}
+
+.range-chart {
+    width: 100%;
+
+    border-top: 3px solid #E8E8E8;
+    border-right: 3px solid #E8E8E8;
+    border-left: 3px solid #E8E8E8;
+    border-bottom: 2px solid #E8E8E8;
+}
+
+.range-chart .range-chart-row {
+    width: 100%;
+    height: 60px;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.range-chart .lines {
+    width: 100%;
+
+    float: left;
+}
+
+.range-chart .lines .line {
+    width: 12.5%;
+    height: 60px;
+
+    float: left;
+
+    border-right: 1px solid #E8E8E8;
+}
+
+.range-chart .data-info {
+    position: relative;
+    z-index: 10;
+}
+
+.range-chart .data-info .graph {
+    position: relative;
+    top: 17px;
+}
+

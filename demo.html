@@ -9,25 +9,74 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
 
     <link rel="stylesheet" href="src/loading/loading.css">
+    <link rel="stylesheet" href="src/range-chart/range-chart.css">
 
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>UI-Elements</h1>
+<div class="container">
+    <h1>UI-Elements</h1>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Loading label
-            </div>
-            <div class="panel-body">
-                <pre>&lt;span class="loading-label"&gt;Loading ...&lt;/span&gt;</pre>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Loading label
+        </div>
+        <div class="panel-body">
+            <pre>&lt;span class="loading-label"&gt;Loading ...&lt;/span&gt;</pre>
 
                 <span class="loading-label">
                     Loading ...
                 </span>
+        </div>
+
+        <div class="panel-body">
+            <pre>&lt;span class="loading-label"&gt;Loading ...&lt;/span&gt;</pre>
+
+            <div id="range-chart-attachment" style="width: 100%;">
+                <!--
+                <div class="range-chart">
+                    <div class="range-chart-row">
+                        <div class="lines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="data-info">
+                            <div class="graph" style="width: 37.8%; height: 15px; background-color: green; border: 1px solid green; left: 10%;"></div>
+                        </div>
+                    </div>
+                    <div class="range-chart-row">
+                        <div class="lines">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="data-info">
+                            <div class="graph" style="width: 42.8%; height: 15px; background-color: green; border: 1px solid green; left: 25%;"></div>
+                        </div>
+                    </div>
+                </div>
+                -->
             </div>
         </div>
     </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="src/range-chart/range-chart.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('.range-chart-attachment').html(rangeChart.createChart());
+    });
+</script>
 </body>
 </html>
