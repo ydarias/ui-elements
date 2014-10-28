@@ -13,7 +13,7 @@
     border-left: 2px solid #153F60;
 }
 
-.range-chart .user-value {
+.range-chart .baseline {
     position: absolute;
 
     width: 1px;
@@ -22,7 +22,7 @@
     z-index: 20;
 }
 
-.range-chart .user-value .user-value-label {
+.range-chart .baseline .baseline-label {
     position: relative;
 
     width: 250px;

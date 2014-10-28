@@ -1,3 +1,44 @@
+var uiElements = uiElements || {};
+
+uiElements.rangeChart = uiElements.rangeChart || {};
+
+(function(){
+
+    uiElements.rangeChart.applyLineHoverEffects = function($container) {
+        if (typeof $ == 'undefined')
+            console.log("ERROR: jQuery is not loaded or it is not accesible");
+
+        var onHoverIn = function() {
+            $(this).find('.limitbox').show(100);
+        };
+
+        var onHoverOut = function() {
+            $(this).find('.limitbox').hide(100);
+        };
+
+        $container.find('.range-chart-row').hover(onHoverIn, onHoverOut);
+    };
+
+    uiElements.rangeChart.calculateBaselinePosition = function($container) {
+        var space = 20;
+        var baselineHeight = $container.height() - space;
+        var $baseline = $container.find('.baseline');
+
+        $baseline.css('height', baselineHeight + 'px');
+        $baseline.css('top', space + 'px');
+    };
+
+    uiElements.rangeChart.calculateHeaderWidth = function($container) {
+        var chartWidth = $container.find('.range-chart').width();
+        var headerWidth = $container.width() - chartWidth;
+        var $dataHeader = $container.find('.data-header');
+
+        $dataHeader.css('width', headerWidth + 'px');
+        $dataHeader.css('left', '-' + headerWidth + 'px');
+    };
+
+})();
+
 (function($) {
 
     function composeLegend(configuration) {
@@ -48,7 +89,7 @@
         var percentualRangeStart = (configuration.userValue.value - configuration.minValue) / totalWidth * 100;
 
         var output = '<div class="range-chart">';
-        output = output + '<div class="user-value" style="left: ' + percentualRangeStart + '%"><div class="user-value-label">' + configuration.userValue.label + '</div></div>';
+        output = output + '<div class="baseline" style="left: ' + percentualRangeStart + '%"><div class="baseline-label">' + configuration.userValue.label + '</div></div>';
         output = output + composeLegend(configuration);
         if (configuration)
             for (var i = 0; i < configuration.ranges.length; i++)
@@ -61,35 +102,9 @@
     $.fn.rangeChart = function(configuration) {
         this.html(composeChart(configuration));
 
-        var $chart = this.find('.range-chart-row');
-        if ($chart) {
-            $chart.hover(
-                function onHoverIn() {
-                    $(this).find('.limitbox').show(100);
-                },
-                function onHoverOut() {
-                    $(this).find('.limitbox').hide(100);
-                }
-            );
-
-        } else {
-            console.log("ERROR: there is not .range-chart-row defined");
-        }
-
-        var space = 20;
-        var containerHeight = this.find('.range-chart').height();
-        var baselineHeight = containerHeight - space;
-        this.find('.user-value').css('height', baselineHeight + 'px');
-        this.find('.user-value').css('top', space + 'px');
-
-
-
-
-        var containerWidth = this.width();
-        var chartWidth = this.find('.range-chart').width();
-        var headerWidth = containerWidth - chartWidth;
-        this.find('.data-header').css('width', headerWidth + 'px');
-        this.find('.data-header').css('left', '-' + headerWidth + 'px');
+        uiElements.rangeChart.applyLineHoverEffects(this);
+        uiElements.rangeChart.calculateBaselinePosition(this);
+        uiElements.rangeChart.calculateHeaderWidth(this);
     };
 
 }(jQuery));
