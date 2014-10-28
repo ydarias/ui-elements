@@ -35,6 +35,7 @@ uiElements.rangeChart = uiElements.rangeChart || {};
 
         $dataHeader.css('width', headerWidth + 'px');
         $dataHeader.css('left', '-' + headerWidth + 'px');
+        $container.find('.legend-description').css('left', '-' + headerWidth + 'px');
     };
 
 })();
@@ -45,12 +46,18 @@ uiElements.rangeChart = uiElements.rangeChart || {};
         var range = configuration.maxValue - configuration.minValue;
         var subRange = range / 8;
 
-        var output = '<div class="legend">';
+        var output = '<div class="legend-description">' + configuration.legendDescription + '</div>';
+        output = output + '<div class="legend">';
         output = output + '<div class="label min"></div>';
         for (var i = 0; i < 7; i++) {
             var position = i + 1;
-            var label = subRange * position + configuration.minValue;
-            output = output + '<div class="label label-' + position + '"><div class="label-data">' + label.toFixed(2) + configuration.postfix + '</div></div>';
+            if (configuration.legend) {
+                var label = configuration.legend.labels[i] + configuration.legend.postfix || '';
+            } else {
+                var label = (subRange * position + configuration.minValue).toFixed(2) + configuration.postfix || '';
+            }
+
+            output = output + '<div class="label label-' + position + '"><div class="label-data">' + label + '</div></div>';
         }
         output = output + '<div class="label max"></div>';
         output = output + '</div>';

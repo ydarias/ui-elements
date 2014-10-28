@@ -35,40 +35,60 @@
         </div>
 
         <div class="panel-body">
+            <p>This <b>jQuery plugin</b> allows the developer to represent ranges of data into a 2D graph.</p>
+
             <pre>
 &lt;div id="range-chart-attachment" style="width: 100%;"&gt;&lt;/div&gt;
 
 &lt;script&gt;
 $(document).ready(function() {
-    $('#range-chart-attachment').html(rangeChart.composeChart({
-        minValue: 5,
-        maxValue: 37,
-        postfix: 'gr',
+    $('#range-chart-attachment').rangeChart({
+        minValue: 60,
+        maxValue: 100,
+        postfix: 'Kg',
+        legendDescription: 'Sneaker recommended weight',
         ranges: [
             {
-                min: 7,
-                max: 10
+                label: 'Adidas Adiboost Boston NYC 33',
+                link: 'http://google.com',
+                min: 70,
+                max: 90
             },
             {
-                min: 14,
-                max: 30
+                label: 'Adidas Adiboost Boston NYC 33',
+                link: 'http://google.com',
+                min: 75,
+                max: 90
             },
             {
-                min: 10,
-                max: 25
+                label: 'Adidas Adiboost Boston NYC 33',
+                link: 'http://google.com',
+                min: 70,
+                max: 100
             },
             {
-                min: 20,
-                max: 35
+                label: 'Adidas Adiboost Boston NYC 33',
+                link: 'http://google.com',
+                min: 80,
+                max: 95
+            },
+            {
+                label: 'Adidas Adiboost Boston NYC 33',
+                link: 'http://google.com',
+                min: 65,
+                max: 90
             }
-        ]
-    }));
+        ],
+        userValue: {
+            value: 85,
+            label: 'Your weight (85Kg)'
+        }
+    });
 });
 &lt;/script&gt;
             </pre>
 
             <div id="range-chart-attachment" style="width: 100%; margin-top: 20px;"></div>
-            <div id="another-range-chart-attachment" style="width: 100%; margin-top: 20px;"></div>
         </div>
     </div>
 </div>
@@ -80,74 +100,43 @@ $(document).ready(function() {
 <script>
     $(document).ready(function() {
         $('#range-chart-attachment').rangeChart({
-            minValue: 5,
-            maxValue: 37,
-            postfix: 'gr',
-            legendDescription: 'Legend description',
-            ranges: [
-                {
-                    label: 'Adidas Adiboost Boston NYC 33',
-                    link: 'http://google.com',
-                    min: 7,
-                    max: 10
-                },
-                {
-                    label: 'Adidas Adiboost Boston NYC 33',
-                    link: 'http://google.com',
-                    min: 14,
-                    max: 30
-                },
-                {
-                    label: 'Adidas Adiboost Boston NYC 33',
-                    link: 'http://google.com',
-                    min: 10,
-                    max: 25
-                },
-                {
-                    label: 'Adidas Adiboost Boston NYC 33',
-                    link: 'http://google.com',
-                    min: 20,
-                    max: 35
-                }
-            ],
-            userValue: {
-                value: 28,
-                label: 'User value label (28gr)'
-            }
-        });
-
-        $('#another-range-chart-attachment').rangeChart({
             minValue: 60,
             maxValue: 100,
             postfix: 'Kg',
             legendDescription: 'Sneaker recommended weight',
+//            legend: {
+//                labels: [
+//                    '#1', '#2', '#3', '#4', '#5', '#6', '#7'
+//                ],
+//                postfix: 'Kg'
+//            },
             ranges: [
                 {
-                    label: 'Adidas Adiboost Boston NYC 33',
+                    label: 'Element number 1',
                     link: 'http://google.com',
                     min: 70,
                     max: 90
                 },
                 {
-                    label: 'Adidas Adiboost Boston NYC 33',
+                    label: 'Element number 2',
                     link: 'http://google.com',
                     min: 75,
                     max: 90
                 },
                 {
-                    label: 'Adidas Adiboost Boston NYC 33',
+                    label: 'Element number 3',
                     link: 'http://google.com',
                     min: 70,
                     max: 100
                 },
                 {
-                    label: 'Adidas Adiboost Boston NYC 33',
+                    label: 'Element number 4',
                     link: 'http://google.com',
                     min: 80,
                     max: 95
                 },
                 {
-                    label: 'Adidas Adiboost Boston NYC 33',
+                    label: 'Element number 5',
                     link: 'http://google.com',
                     min: 65,
                     max: 90
