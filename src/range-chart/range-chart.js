@@ -106,12 +106,23 @@ uiElements.rangeChart = uiElements.rangeChart || {};
         return output;
     }
 
+    var $chartContainers = [];
+
     $.fn.rangeChart = function(configuration) {
         this.html(composeChart(configuration));
 
         uiElements.rangeChart.applyLineHoverEffects(this);
         uiElements.rangeChart.calculateBaselinePosition(this);
         uiElements.rangeChart.calculateHeaderWidth(this);
+
+        $chartContainers.push(this);
     };
 
+    $(window).resize(function() {
+        $chartContainers.forEach(function($chartContainer) {
+            uiElements.rangeChart.applyLineHoverEffects($chartContainer);
+            uiElements.rangeChart.calculateBaselinePosition($chartContainer);
+            uiElements.rangeChart.calculateHeaderWidth($chartContainer);
+        });
+    });
 }(jQuery));

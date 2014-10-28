@@ -39,6 +39,7 @@
 
             <pre>
 &lt;div id="range-chart-attachment" style="width: 100%;"&gt;&lt;/div&gt;
+&lt;div id="range-chart-attachment-2" style="width: 100%;"&gt;&lt;/div&gt;
 
 &lt;script&gt;
 $(document).ready(function() {
@@ -84,11 +85,61 @@ $(document).ready(function() {
             label: 'Your weight (85Kg)'
         }
     });
+    $('#range-chart-attachment-2').rangeChart({
+        minValue: 60,
+        maxValue: 100,
+        postfix: 'Kg',
+        legendDescription: 'Sneaker recommended weight',
+        legend: {
+            labels: [
+                '#1', '#2', '#3', '#4', '#5', '#6', '#7'
+            ],
+            postfix: 'Kg'
+        },
+        ranges: [
+            {
+                label: 'Element number 1',
+                link: 'http://google.com',
+                min: 70,
+                max: 90
+            },
+            {
+                label: 'Element number 2',
+                link: 'http://google.com',
+                min: 75,
+                max: 90
+            },
+            {
+                label: 'Element number 3',
+                link: 'http://google.com',
+                min: 70,
+                max: 100
+            },
+            {
+                label: 'Element number 4',
+                link: 'http://google.com',
+                min: 80,
+                max: 95
+            },
+            {
+                label: 'Element number 5',
+                link: 'http://google.com',
+                min: 65,
+                max: 90
+            }
+        ],
+        userValue: {
+            value: 85,
+            label: 'Your weight (85Kg)'
+        }
+    });
+
 });
 &lt;/script&gt;
             </pre>
 
             <div id="range-chart-attachment" style="width: 100%; margin-top: 20px;"></div>
+            <div id="range-chart-attachment-2" style="width: 100%; margin-top: 20px;"></div>
         </div>
     </div>
 </div>
@@ -104,12 +155,54 @@ $(document).ready(function() {
             maxValue: 100,
             postfix: 'Kg',
             legendDescription: 'Sneaker recommended weight',
-//            legend: {
-//                labels: [
-//                    '#1', '#2', '#3', '#4', '#5', '#6', '#7'
-//                ],
-//                postfix: 'Kg'
-//            },
+            ranges: [
+                {
+                    label: 'Element number 1',
+                    link: 'http://google.com',
+                    min: 70,
+                    max: 90
+                },
+                {
+                    label: 'Element number 2',
+                    link: 'http://google.com',
+                    min: 75,
+                    max: 90
+                },
+                {
+                    label: 'Element number 3',
+                    link: 'http://google.com',
+                    min: 70,
+                    max: 100
+                },
+                {
+                    label: 'Element number 4',
+                    link: 'http://google.com',
+                    min: 80,
+                    max: 95
+                },
+                {
+                    label: 'Element number 5',
+                    link: 'http://google.com',
+                    min: 65,
+                    max: 90
+                }
+            ],
+            userValue: {
+                value: 85,
+                label: 'Your weight (85Kg)'
+            }
+        });
+        $('#range-chart-attachment-2').rangeChart({
+            minValue: 60,
+            maxValue: 100,
+            postfix: 'Kg',
+            legendDescription: 'Sneaker recommended weight',
+            legend: {
+                labels: [
+                    '#1', '#2', '#3', '#4', '#5', '#6', '#7'
+                ],
+                postfix: 'Kg'
+            },
             ranges: [
                 {
                     label: 'Element number 1',
