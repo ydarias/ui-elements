@@ -105,6 +105,15 @@ $(document).ready(function() {
                 label: 'User value label'
             }
         }));
+
+        $('.range-chart-row').hover(
+            function onHoverIn() {
+                $(this).find('.limitbox').show(100);
+            },
+            function onHoverOut() {
+                $(this).find('.limitbox').hide(100);
+            }
+        )
     });
 </script>
 </body>
