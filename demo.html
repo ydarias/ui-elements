@@ -67,7 +67,8 @@ $(document).ready(function() {
 &lt;/script&gt;
             </pre>
 
-            <div id="range-chart-attachment" style="width: 100%;"></div>
+            <div id="range-chart-attachment" style="width: 100%; margin-top: 20px;"></div>
+            <div id="another-range-chart-attachment" style="width: 100%; margin-top: 20px;"></div>
         </div>
     </div>
 </div>
@@ -78,7 +79,7 @@ $(document).ready(function() {
 
 <script>
     $(document).ready(function() {
-        $('#range-chart-attachment').html(rangeChart.composeChart({
+        $('#range-chart-attachment').rangeChart({
             minValue: 5,
             maxValue: 37,
             postfix: 'gr',
@@ -104,18 +105,39 @@ $(document).ready(function() {
                 value: 28,
                 label: 'User value label (28gr)'
             }
-        }));
+        });
 
-        $('.range-chart-row').hover(
-            function onHoverIn() {
-                $(this).find('.limitbox').show(100);
-            },
-            function onHoverOut() {
-                $(this).find('.limitbox').hide(100);
+        $('#another-range-chart-attachment').rangeChart({
+            minValue: 60,
+            maxValue: 100,
+            postfix: 'Kg',
+            ranges: [
+                {
+                    min: 70,
+                    max: 90
+                },
+                {
+                    min: 75,
+                    max: 90
+                },
+                {
+                    min: 70,
+                    max: 100
+                },
+                {
+                    min: 80,
+                    max: 95
+                },
+                {
+                    min: 65,
+                    max: 90
+                }
+            ],
+            userValue: {
+                value: 85,
+                label: 'Your weight (85Kg)'
             }
-        );
-
-        $('.user-value').css('height', $('.range-chart').height());
+        });
     });
 </script>
 </body>

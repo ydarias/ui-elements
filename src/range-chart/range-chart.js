@@ -1,6 +1,4 @@
-var rangeChart = rangeChart || {};
-
-(function() {
+(function($) {
 
     function composeLegend(configuration) {
         var range = configuration.maxValue - configuration.minValue;
@@ -53,6 +51,26 @@ var rangeChart = rangeChart || {};
         return output;
     }
 
-    rangeChart.composeChart = composeChart;
+    $.fn.rangeChart = function(configuration) {
+        this.html(composeChart(configuration));
 
-})();
+        var $chart = this.find('.range-chart-row');
+        if ($chart) {
+            $chart.hover(
+                function onHoverIn() {
+                    $(this).find('.limitbox').show(100);
+                },
+                function onHoverOut() {
+                    $(this).find('.limitbox').hide(100);
+                }
+            );
+
+        } else {
+            console.log("ERROR: there is not .range-chart-row defined");
+        }
+
+        var containerHeight = this.find('.range-chart').height();
+        this.find('.user-value').css('height', containerHeight);
+    };
+
+}(jQuery));
