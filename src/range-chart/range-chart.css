@@ -4,10 +4,20 @@
 }
 
 .range-chart {
+    position: relative;
+
     width: 100%;
 
     border-right: 2px solid #153F60;
     border-left: 2px solid #153F60;
+}
+
+.range-chart .user-value {
+    position: absolute;
+
+    width: 1px;
+    border: 1px solid red;
+    height: 320px;
 }
 
 .range-chart .range-chart-row {
@@ -22,18 +32,45 @@
 
 
 .range-chart .lines {
+    position: absolute;
     width: 100%;
-
-    float: left;
 }
 
 .range-chart .lines .line {
-    width: 12.5%;
+    position: absolute;
+
+    width: 1px;
     height: 60px;
 
-    float: left;
-
     border-right: 1px solid #E8E8E8;
+}
+
+.range-chart .lines .line.col-1 {
+    left: 12.5%;
+}
+
+.range-chart .lines .line.col-2 {
+    left: 25%;
+}
+
+.range-chart .lines .line.col-3 {
+    left: 37.5%;
+}
+
+.range-chart .lines .line.col-4 {
+    left: 50%;
+}
+
+.range-chart .lines .line.col-5 {
+    left: 62.5%;
+}
+
+.range-chart .lines .line.col-6 {
+    left: 75%;
+}
+
+.range-chart .lines .line.col-7 {
+    left: 87.5%;
 }
 
 .range-chart .data-info {

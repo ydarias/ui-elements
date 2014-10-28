@@ -20,8 +20,10 @@ var rangeChart = rangeChart || {};
 
     function composeLines() {
         var output = '<div class="lines">';
-        for (var i = 0; i < 7; i++)
-            output = output + '<div class="line"></div>';
+        for (var i = 0; i < 7; i++) {
+            var position = i + 1;
+            output = output + '<div class="line col-' + position + '"></div>';
+        }
         output = output + '</div>';
 
         return output;
@@ -37,7 +39,11 @@ var rangeChart = rangeChart || {};
     }
 
     function composeChart(configuration) {
+        var totalWidth = configuration.maxValue - configuration.minValue;
+        var percentualRangeStart = (configuration.userValue.value - configuration.minValue) / totalWidth * 100;
+
         var output = '<div class="range-chart">';
+        output = output + '<div class="user-value" style="left: ' + percentualRangeStart + '%"></div>';
         output = output + composeLegend(configuration);
         if (configuration)
             for (var i = 0; i < configuration.ranges.length; i++)
