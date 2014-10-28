@@ -1,5 +1,17 @@
 (function($) {
 
+    function composeHeader(configuration) {
+        var output = '<div class="header-range-chart"><div class="legend-description">' + configuration.legendDescription + '</div>';
+        for (var i = 0; i < configuration.ranges.length; i++) {
+            var elementDescription = configuration.ranges[i].label;
+            var elementLink = configuration.ranges[i].link;
+            output = output + '<a href="' + elementLink + '"><div class="element-description">'  + elementDescription + '</div></a>';
+        }
+        output = output + '</div>';
+
+        return output;
+    }
+
     function composeLegend(configuration) {
         var range = configuration.maxValue - configuration.minValue;
         var subRange = range / 8;
@@ -40,7 +52,9 @@
         var totalWidth = configuration.maxValue - configuration.minValue;
         var percentualRangeStart = (configuration.userValue.value - configuration.minValue) / totalWidth * 100;
 
-        var output = '<div class="range-chart">';
+        var output = composeHeader(configuration);
+
+        output = output + '<div class="range-chart">';
         output = output + '<div class="user-value" style="left: ' + percentualRangeStart + '%"><div class="user-value-label">' + configuration.userValue.label + '</div></div>';
         output = output + composeLegend(configuration);
         if (configuration)
@@ -69,8 +83,11 @@
             console.log("ERROR: there is not .range-chart-row defined");
         }
 
+        var space = 20;
         var containerHeight = this.find('.range-chart').height();
-        this.find('.user-value').css('height', containerHeight);
+        var baselineHeight = containerHeight - space;
+        this.find('.user-value').css('height', baselineHeight + 'px');
+        this.find('.user-value').css('top', space + 'px');
     };
 
 }(jQuery));

@@ -1,3 +1,26 @@
+.header-range-chart {
+    position: absolute;
+
+    width: 30%;
+}
+
+.header-range-chart .legend-description {
+    position: relative;
+
+    height: 50px;
+
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.header-range-chart .element-description {
+    height: 60px;
+    line-height: 60px;
+    margin: auto;
+
+    border-bottom: 1px solid #E8E8E8;
+}
+
 .range-chart * {
     margin: 0;
     padding: 0;
@@ -6,7 +29,8 @@
 .range-chart {
     position: relative;
 
-    width: 100%;
+    width: 70%;
+    left: 30%;
 
     border-right: 2px solid #153F60;
     border-left: 2px solid #153F60;
@@ -26,7 +50,6 @@
 
     width: 250px;
     right: 255px;
-    top: 16px;
     text-align: right;
     color: red;
     font-size: 12px;
