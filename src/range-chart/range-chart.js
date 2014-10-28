@@ -2,12 +2,16 @@ var rangeChart = rangeChart || {};
 
 (function() {
 
-    function composeLegend() {
+    function composeLegend(configuration) {
+        var range = configuration.maxValue - configuration.minValue;
+        var subRange = range / 8;
+
         var output = '<div class="legend">';
         output = output + '<div class="label min"></div>';
         for (var i = 0; i < 7; i++) {
             var position = i + 1;
-            output = output + '<div class="label label-' + position + '"><div class="label-data">' + position + '</div></div>';
+            var label = subRange * position + configuration.minValue;
+            output = output + '<div class="label label-' + position + '"><div class="label-data">' + label.toFixed(2) + configuration.postfix + '</div></div>';
         }
         output = output + '<div class="label max"></div>';
         output = output + '</div>';
@@ -23,21 +27,21 @@ var rangeChart = rangeChart || {};
         return output;
     }
 
-    function composeChartLine(minValue, maxValue, range) {
+    function composeChartLine(minValue, maxValue, range, postfix) {
         var totalWidth = maxValue - minValue;
         var percentualRangeWidth = (range.max - range.min) / totalWidth * 100;
         var percentualRangeStart = (range.min - minValue) / totalWidth * 100;
 
-        var dataInfo = '<div class="data-info"><div class="graph" style="width: ' + percentualRangeWidth + '%; height: 15px; background-color: green; border: 1px solid green; left: ' + percentualRangeStart + '%;"></div></div>';
+        var dataInfo = '<div class="data-info"><div class="graph" style="width: ' + percentualRangeWidth + '%; left: ' + percentualRangeStart + '%;"><div class="limitbox min-value"><div class="inner">' + range.min + postfix + '</div></div><div class="limitbox max-value"><div class="inner">' + range.max + postfix + '</div></div></div></div>';
         return '<div class="range-chart-row">' + composeLines() + dataInfo + '</div>';
     }
 
     function composeChart(configuration) {
         var output = '<div class="range-chart">';
-        output = output + composeLegend();
+        output = output + composeLegend(configuration);
         if (configuration)
             for (var i = 0; i < configuration.ranges.length; i++)
-                output = output + composeChartLine(configuration.minValue, configuration.maxValue, configuration.ranges[i]);
+                output = output + composeChartLine(configuration.minValue, configuration.maxValue, configuration.ranges[i], configuration.postfix);
         output = output + '</div>';
 
         return output;

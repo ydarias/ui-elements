@@ -27,9 +27,45 @@
                     Loading ...
                 </span>
         </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Ranges chart
+        </div>
 
         <div class="panel-body">
-            <pre>&lt;span class="loading-label"&gt;Loading ...&lt;/span&gt;</pre>
+            <pre>
+&lt;div id="range-chart-attachment" style="width: 100%;"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+$(document).ready(function() {
+    $('#range-chart-attachment').html(rangeChart.composeChart({
+        minValue: 5,
+        maxValue: 37,
+        postfix: 'gr',
+        ranges: [
+            {
+                min: 7,
+                max: 10
+            },
+            {
+                min: 14,
+                max: 30
+            },
+            {
+                min: 10,
+                max: 25
+            },
+            {
+                min: 20,
+                max: 35
+            }
+        ]
+    }));
+});
+&lt;/script&gt;
+            </pre>
 
             <div id="range-chart-attachment" style="width: 100%;"></div>
         </div>
@@ -45,6 +81,7 @@
         $('#range-chart-attachment').html(rangeChart.composeChart({
             minValue: 5,
             maxValue: 37,
+            postfix: 'gr',
             ranges: [
                 {
                     min: 7,
