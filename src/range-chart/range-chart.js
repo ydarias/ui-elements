@@ -43,7 +43,7 @@ var rangeChart = rangeChart || {};
         var percentualRangeStart = (configuration.userValue.value - configuration.minValue) / totalWidth * 100;
 
         var output = '<div class="range-chart">';
-        output = output + '<div class="user-value" style="left: ' + percentualRangeStart + '%"></div>';
+        output = output + '<div class="user-value" style="left: ' + percentualRangeStart + '%"><div class="user-value-label">' + configuration.userValue.label + '</div></div>';
         output = output + composeLegend(configuration);
         if (configuration)
             for (var i = 0; i < configuration.ranges.length; i++)
