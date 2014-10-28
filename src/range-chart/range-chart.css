@@ -6,10 +6,8 @@
 .range-chart {
     width: 100%;
 
-    border-top: 3px solid #E8E8E8;
-    border-right: 3px solid #E8E8E8;
-    border-left: 3px solid #E8E8E8;
-    border-bottom: 2px solid #E8E8E8;
+    border-right: 2px solid #153F60;
+    border-left: 2px solid #153F60;
 }
 
 .range-chart .range-chart-row {
@@ -40,6 +38,60 @@
 
 .range-chart .data-info .graph {
     position: relative;
-    top: 17px;
+    top: 22px;
+}
+
+.range-chart .legend {
+    position: relative;
+
+    width: 100%;
+    height: 20px;
+}
+
+.range-chart .legend .label {
+    position: absolute;
+    width: 25%;
+}
+
+.range-chart .legend .label .label-data {
+    position: absolute;
+    color: #1586d8;
+}
+
+.range-chart .legend .max,
+.range-chart .legend .min {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    width: 0;
+    height: 0;
+}
+
+.range-chart .legend .label-1 {
+    left: 12.5%;
+}
+
+.range-chart .legend .label-2 {
+    left: 25%;
+}
+
+.range-chart .legend .label-3 {
+    left: 37.5%;
+}
+
+.range-chart .legend .label-4 {
+    left: 50%;
+}
+
+.range-chart .legend .label-5 {
+    left: 62.5%;
+}
+
+.range-chart .legend .label-6 {
+    left: 75%;
+}
+
+.range-chart .legend .label-7 {
+    left: 87.5%;
 }
 

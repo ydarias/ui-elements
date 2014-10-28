@@ -31,40 +31,7 @@
         <div class="panel-body">
             <pre>&lt;span class="loading-label"&gt;Loading ...&lt;/span&gt;</pre>
 
-            <div id="range-chart-attachment" style="width: 100%;">
-                <!--
-                <div class="range-chart">
-                    <div class="range-chart-row">
-                        <div class="lines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <div class="data-info">
-                            <div class="graph" style="width: 37.8%; height: 15px; background-color: green; border: 1px solid green; left: 10%;"></div>
-                        </div>
-                    </div>
-                    <div class="range-chart-row">
-                        <div class="lines">
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                            <div class="line"></div>
-                        </div>
-                        <div class="data-info">
-                            <div class="graph" style="width: 42.8%; height: 15px; background-color: green; border: 1px solid green; left: 25%;"></div>
-                        </div>
-                    </div>
-                </div>
-                -->
-            </div>
+            <div id="range-chart-attachment" style="width: 100%;"></div>
         </div>
     </div>
 </div>
@@ -75,7 +42,28 @@
 
 <script>
     $(document).ready(function() {
-        $('.range-chart-attachment').html(rangeChart.createChart());
+        $('#range-chart-attachment').html(rangeChart.composeChart({
+            minValue: 5,
+            maxValue: 37,
+            ranges: [
+                {
+                    min: 7,
+                    max: 10
+                },
+                {
+                    min: 14,
+                    max: 30
+                },
+                {
+                    min: 10,
+                    max: 25
+                },
+                {
+                    min: 20,
+                    max: 35
+                }
+            ]
+        }));
     });
 </script>
 </body>

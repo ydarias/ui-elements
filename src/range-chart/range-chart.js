@@ -2,17 +2,47 @@ var rangeChart = rangeChart || {};
 
 (function() {
 
-    var lines = '<div class="lines"><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div></div>';
-
-    function composeChartLine() {
-        var dataInfo = '<div class="data-info"><div class="graph" style="width: 37.8%; height: 15px; background-color: green; border: 1px solid green; left: 10%;"></div></div>';
-        return '<div class="range-chart-row">' + lines + dataInfo + '</div>';
+    function composeLegend() {
+        var output = '<div class="legend">';
+        output = output + '<div class="label min"></div>';
+        for (var i = 0; i < 7; i++) {
+            var position = i + 1;
+            output = output + '<div class="label label-' + position + '"><div class="label-data">' + position + '</div></div>';
+        }
+        output = output + '<div class="label max"></div>';
+        output = output + '</div>';
+        return output;
     }
 
-    function createChart() {
-        return '<div class="range-chart">' + composeChartLine() + composeChartLine() + composeChartLine() + '</div>';
+    function composeLines() {
+        var output = '<div class="lines">';
+        for (var i = 0; i < 7; i++)
+            output = output + '<div class="line"></div>';
+        output = output + '</div>';
+
+        return output;
     }
 
-    rangeChart.createChart = createChart;
+    function composeChartLine(minValue, maxValue, range) {
+        var totalWidth = maxValue - minValue;
+        var percentualRangeWidth = (range.max - range.min) / totalWidth * 100;
+        var percentualRangeStart = (range.min - minValue) / totalWidth * 100;
+
+        var dataInfo = '<div class="data-info"><div class="graph" style="width: ' + percentualRangeWidth + '%; height: 15px; background-color: green; border: 1px solid green; left: ' + percentualRangeStart + '%;"></div></div>';
+        return '<div class="range-chart-row">' + composeLines() + dataInfo + '</div>';
+    }
+
+    function composeChart(configuration) {
+        var output = '<div class="range-chart">';
+        output = output + composeLegend();
+        if (configuration)
+            for (var i = 0; i < configuration.ranges.length; i++)
+                output = output + composeChartLine(configuration.minValue, configuration.maxValue, configuration.ranges[i]);
+        output = output + '</div>';
+
+        return output;
+    }
+
+    rangeChart.composeChart = composeChart;
 
 })();
