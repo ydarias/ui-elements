@@ -45,13 +45,18 @@
 
 .range-chart .data-header {
     position: absolute;
+    display: table;
 
     border-bottom: 1px solid #E8E8E8;
 }
 
 .range-chart .data-header .header-label {
+    display: table-cell;
+    vertical-align: middle;
+
     height: 59px;
-    line-height: 59px;
+    line-height: 20px;
+    padding: 2px;
 }
 
 .range-chart .lines {
