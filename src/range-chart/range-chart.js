@@ -51,10 +51,16 @@ uiElements.rangeChart = uiElements.rangeChart || {};
         output = output + '<div class="label min"></div>';
         for (var i = 0; i < 7; i++) {
             var position = i + 1;
+            var label = '';
             if (configuration.legend) {
-                var label = configuration.legend.labels[i] + configuration.legend.postfix || '';
+                label = configuration.legend.labels[i] + configuration.legend.postfix || '';
             } else {
-                var label = (subRange * position + configuration.minValue).toFixed(2) + configuration.postfix || '';
+                var numericValue = (subRange * position + configuration.minValue).toFixed(2);
+                if (configuration.labelCallback)
+                    label = configuration.labelCallback(numericValue);
+                else
+                    label = numericValue;
+                label = label + configuration.postfix || '';
             }
 
             output = output + '<div class="label label-' + position + '"><div class="label-data">' + label + '</div></div>';
@@ -95,9 +101,19 @@ uiElements.rangeChart = uiElements.rangeChart || {};
         var percentualRangeWidth = (rangeMax - rangeMin) / totalWidth * 100;
         var percentualRangeStart = (rangeMin - minValue) / totalWidth * 100;
 
+        var minLabel = '';
+        var maxLabel = '';
+        if (configuration.labelCallback) {
+            minLabel = configuration.labelCallback(rangeMin);
+            maxLabel = configuration.labelCallback(rangeMax);
+        } else {
+            minLabel = rangeMin;
+            maxLabel = rangeMax;
+        }
+
         var dataInfo = '<div class="data-info"><div class="graph" style="width: ' + percentualRangeWidth + '%; left: ' +
-            percentualRangeStart + '%;"><div class="limitbox min-value"><div class="inner">' + rangeMin + postfix +
-            '</div></div><div class="limitbox max-value"><div class="inner">' + rangeMax + postfix + '</div></div></div></div>';
+            percentualRangeStart + '%;"><div class="limitbox min-value"><div class="inner">' + minLabel + postfix +
+            '</div></div><div class="limitbox max-value"><div class="inner">' + maxLabel + postfix + '</div></div></div></div>';
         output = output + composeLines() + dataInfo + '</div>';
 
         return output;
@@ -109,7 +125,13 @@ uiElements.rangeChart = uiElements.rangeChart || {};
         if (configuration.userValue) {
             var totalWidth = configuration.maxValue - configuration.minValue;
             var percentualRangeStart = (configuration.userValue.value - configuration.minValue) / totalWidth * 100;
-            output = output + '<div class="baseline" style="left: ' + percentualRangeStart + '%"><div class="baseline-label">' + configuration.userValue.label + '</div></div>';
+            var label = '';
+            if (configuration.labelCallback) {
+                label = configuration.userValue.prefix + configuration.labelCallback(configuration.userValue.value);
+            } else {
+                label = configuration.userValue.label;
+            }
+            output = output + '<div class="baseline" style="left: ' + percentualRangeStart + '%"><div class="baseline-label">' + label + '</div></div>';
         }
 
         output = output + composeLegend(configuration);
