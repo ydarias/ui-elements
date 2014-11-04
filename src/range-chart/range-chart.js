@@ -75,6 +75,14 @@ uiElements.rangeChart = uiElements.rangeChart || {};
         return output;
     }
 
+    function largerValue(a, b) {
+        return (a > b) ? a : b;
+    }
+
+    function smallerValue(a, b) {
+        return (a < b) ? a : b;
+    }
+
     function composeChartLine(minValue, maxValue, range, postfix, configuration) {
         var elementDescription = range.label;
         var elementLink = range.link;
@@ -82,10 +90,14 @@ uiElements.rangeChart = uiElements.rangeChart || {};
         var output = '<div class="range-chart-row"><div class="data-header"><a href="' + elementLink + '"><div class="header-label">'  + elementDescription + '</div></a></div>';
 
         var totalWidth = maxValue - minValue;
-        var percentualRangeWidth = (range.max - range.min) / totalWidth * 100;
-        var percentualRangeStart = (range.min - minValue) / totalWidth * 100;
+        var rangeMax = smallerValue(range.max, maxValue);
+        var rangeMin = largerValue(range.min, minValue);
+        var percentualRangeWidth = (rangeMax - rangeMin) / totalWidth * 100;
+        var percentualRangeStart = (rangeMin - minValue) / totalWidth * 100;
 
-        var dataInfo = '<div class="data-info"><div class="graph" style="width: ' + percentualRangeWidth + '%; left: ' + percentualRangeStart + '%;"><div class="limitbox min-value"><div class="inner">' + range.min + postfix + '</div></div><div class="limitbox max-value"><div class="inner">' + range.max + postfix + '</div></div></div></div>';
+        var dataInfo = '<div class="data-info"><div class="graph" style="width: ' + percentualRangeWidth + '%; left: ' +
+            percentualRangeStart + '%;"><div class="limitbox min-value"><div class="inner">' + rangeMin + postfix +
+            '</div></div><div class="limitbox max-value"><div class="inner">' + rangeMax + postfix + '</div></div></div></div>';
         output = output + composeLines() + dataInfo + '</div>';
 
         return output;
