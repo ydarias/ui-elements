@@ -104,11 +104,14 @@ uiElements.rangeChart = uiElements.rangeChart || {};
     }
 
     function composeChart(configuration) {
-        var totalWidth = configuration.maxValue - configuration.minValue;
-        var percentualRangeStart = (configuration.userValue.value - configuration.minValue) / totalWidth * 100;
-
         var output = '<div class="range-chart">';
-        output = output + '<div class="baseline" style="left: ' + percentualRangeStart + '%"><div class="baseline-label">' + configuration.userValue.label + '</div></div>';
+
+        if (configuration.userValue) {
+            var totalWidth = configuration.maxValue - configuration.minValue;
+            var percentualRangeStart = (configuration.userValue.value - configuration.minValue) / totalWidth * 100;
+            output = output + '<div class="baseline" style="left: ' + percentualRangeStart + '%"><div class="baseline-label">' + configuration.userValue.label + '</div></div>';
+        }
+
         output = output + composeLegend(configuration);
         if (configuration)
             for (var i = 0; i < configuration.ranges.length; i++)
